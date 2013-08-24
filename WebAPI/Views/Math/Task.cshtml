@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SRLayout.cshtml";
+}
+
+@section scripts {
+    
+    <script language="javascript">
+        var data;
+        var taskId = 1;
+        var currentInd = 0;
+        var totalQuestions = 0;
+        $(function() {
+            // Reference the auto-generated proxy for the hub.  
+            var apiProxy = $.connection.apiHub;
+           
+            $.connection.hub.start().done(
+                function() {
+                    apiProxy.server.getTask(taskId).done(function(resp) {
+                        console.log(JSON.stringify(resp));
+                        data = resp;
+                        //get task data
+                    });
+
+                });
+
+        });</script>
+}
+
+<h2>Task</h2>
+<p>Load Task data here, when ready show start button in the center</p>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e71d46cf5324f02b6bb0a62ead3fb03" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="FutureStarModel.Answer" Width="1.5" PointX="16" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Content" Width="1.5" PointX="15.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Item" Width="1.5" PointX="12.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Level" Width="1.5" PointX="4.875" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Project" Width="1.5" PointX="8.625" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Question" Width="1.5" PointX="16.125" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Tag_Items" Width="1.5" PointX="12" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Tag" Width="1.5" PointX="9" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Task_Items" Width="1.5" PointX="12.625" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.Task" Width="1.5" PointX="8.875" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.User_Projects" Width="1.5" PointX="5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutureStarModel.User" Width="1.5" PointX="4.75" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="FutureStarModel.FK_Answers_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Questions_Contents" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Items_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Items_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Tag_Items_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Task_Items_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Tags_Levels" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_User_Projects_Levels" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_User_Projects_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Tag_Items_Tags" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Task_Items_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_Tasks_User_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="FutureStarModel.FK_User_Projects_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Future Stars</title>
+    <link href="css/Site.css" rel="stylesheet" />
+    <link href="css/FutureStar.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script src="Scripts/jquery.mobile-1.3.1.min.js"></script>
+    <script src="Scripts/knockout-2.3.0.js"></script>
+    <script src="Scripts/modernizr-2.6.2.js"></script>
+    <!--    <script src="http://localhost:45897/Scripts/jquery.signalR-1.1.3.js"></script>
+        <script src="http://localhost:45897/signalr/hubs"></script>
+        <script src="Scripts/FS/FSDataRetriver_signalR.js"></script>
+        -->
+    <script src="Scripts/FS/FSSetting.js"></script>
+    <script src="Scripts/FS/FSDataRetriver_jsonp.js"></script>
+    <script src="Scripts/FS/FSDataAPI.js"></script>
+    <script >
+        var Page = {
+            TaskData: {},
+            taskId : 1,
+        currentInd : 0,
+        totalQuestions :0,
+            Init: function () {
+
+                $(document).ready(function () {
+                    FSDataAPI.GetTask(1).done(function (data) {
+                        Page.TaskData = data;
+                        console.log('FSDataRetriver.gettask done');
+                        Page.fillTask();
+                        Page.fillQuestion(Page.currentInd);
+                    });
+                    //var data = //FSDataAPI.GetTask(1);
+                    //alert(JSON.stringify(data));
+                });
+            }
+        };
+        Page.fillTask = function () {
+           var data = Page.TaskData;
+            $("#taskDesc").html(data.Task.Description);
+            Page.totalQuestions = data.Task.Items.length;
+        };
+
+        Page.fillQuestion = function (ind) {
+            var data = Page.TaskData;
+            $("#question").html(data.Task.Items[ind].Question.QuestionText);
+            Page.fillAnswers(data.Task.Items[ind].Question.Answers);
+        };
+
+        Page.fillAnswers = function(anwrs) {
+            $("#answers").removeClass("answered");
+            var answerHtml = "";
+            if (anwrs != null) {
+                for (var i = 0; i < anwrs.length; i++) {
+                    var correct = "wrong";
+                    if (anwrs[i].IsCorrect) {
+                        correct = "correct";
+                    }
+                    answerHtml += "<div class='answer " + correct + "' id='anwr_" + anwrs[i].Id + "'>" + anwrs[i].Text + "</div>";
+                }
+            }
+
+            $("#answers").html(answerHtml);
+
+            $("#answers .answer").off("click");
+
+            $("#answers .answer").on("click", function(event) {
+                Page.AnswerClicked($(this));
+            });
+
+        };
+
+        Page.NextQuestion = function() {
+            Page. currentInd++;
+            if (Page.currentInd < Page.totalQuestions) {
+                Page.fillQuestion(Page.currentInd);
+            }
+        };
+
+        Page.AnswerClicked = function(target) {
+            $("#answers").addClass("answered");
+            //todo: verify the answer and save
+            //todo: count the time
+            //todo: save data to object
+            //todo: load next
+            window.setTimeout(Page.NextQuestion, 2000); //do the fadeout later
+        };
+        Page.Init();
+    </script>
+</head>
+<body>
+    <h2>Task</h2>
+<h4><span id="taskDesc"></span></h4>
+<div id="body">
+    
+    <div id="question"></div>
+    <div id="answers"></div>
+</div>
+</body>
+</html>

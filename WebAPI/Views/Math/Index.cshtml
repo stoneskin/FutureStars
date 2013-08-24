@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SRLayout.cshtml";
+}
+
+<h2>index</h2>
+<p> load data from server</p>
+<p> list all tasks of math here</p>
+<p></p>
+<a href="~/Math/Task"> task </a>
+@section scripts {
+    <script language="javascript">
+        
+        $(function () {
+            // Reference the auto-generated proxy for the hub.  
+            var apiProxy = $.connection.apiHub;
+        
+
+            $.connection.hub.start().done(
+                function () {
+                    apiProxy.server.userLogOn("token").done(function (resp) {
+                        console.log(JSON.stringify(resp));
+                       
+                    });
+
+                });
+
+        });
+    </script>
+}

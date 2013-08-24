@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SRLayout.cshtml";
+}
+
+
+@section scripts {
+    <script language="javascript">
+        var data;
+        var taskId = 1;
+        var currentInd = 0;
+        var totalQuestions = 0;
+        $(function() {
+           
+
+        });
+
+        function fillTask() {
+            $("#taskDesc").html(data.Task.Description);
+            totalQuestions = data.Task.Items.length;
+        }
+
+        function fillQuestion(ind) {
+            $("#question").html(data.Task.Items[ind].Question.QuestionText);
+            fillAnswers(data.Task.Items[ind].Question.Answers);
+        }
+
+        function fillAnswers(anwrs) {
+            $("#answers").removeClass("answered");
+            var answerHtml = "";
+            if (anwrs != null) {
+                for (var i = 0; i < anwrs.length; i++) {
+                    var correct = "wrong";
+                    if (anwrs[i].IsCorrect) {
+                        correct = "correct";
+                    }
+                    answerHtml += "<div class='answer " + correct + "' id='anwr_" + anwrs[i].Id + "'>" + anwrs[i].Text + "</div>";
+                }
+            }
+
+            $("#answers").html(answerHtml);
+
+            $("#answers .answer").off("click");
+
+            $("#answers .answer").on("click", function(event) {
+                AnswerClicked($(this));
+            });
+
+        }
+
+        function NextQuestion() {
+            currentInd++;
+            if (currentInd < totalQuestions) {
+                fillQuestion(currentInd);
+            }
+        }
+
+        function AnswerClicked(target) {
+            $("#answers").addClass("answered");
+            //todo: verify the answer and save
+            //todo: count the time
+            //todo: save data to object
+            //todo: load next
+            window.setTimeout(NextQuestion, 2000); //do the fadeout later
+
+
+        }
+    </script>
+} 
+
+
+<h2>Math</h2>
+<h4><span id="taskDesc"></span></h4>
+<div id="body">
+    
+    <div id="question"></div>
+    <div id="answers"></div>
+</div>

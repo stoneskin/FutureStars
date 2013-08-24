@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FutureStarModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FutureStarModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="FutureStarModel.Store.Answers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contents" EntityType="FutureStarModel.Store.Contents" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Items" EntityType="FutureStarModel.Store.Items" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Levels" EntityType="FutureStarModel.Store.Levels" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Projects" EntityType="FutureStarModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Questions" EntityType="FutureStarModel.Store.Questions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tag_Items" EntityType="FutureStarModel.Store.Tag_Items" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tags" EntityType="FutureStarModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Task_Items" EntityType="FutureStarModel.Store.Task_Items" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tasks" EntityType="FutureStarModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User_Projects" EntityType="FutureStarModel.Store.User_Projects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="FutureStarModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Answers_Questions" Association="FutureStarModel.Store.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Projects" Association="FutureStarModel.Store.FK_Items_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Questions" Association="FutureStarModel.Store.FK_Items_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Contents" Association="FutureStarModel.Store.FK_Questions_Contents">
+            <End Role="Contents" EntitySet="Contents" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Items_Items" Association="FutureStarModel.Store.FK_Tag_Items_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Tag_Items" EntitySet="Tag_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Items_Tags" Association="FutureStarModel.Store.FK_Tag_Items_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Tag_Items" EntitySet="Tag_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_Levels" Association="FutureStarModel.Store.FK_Tags_Levels">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Items_Items" Association="FutureStarModel.Store.FK_Task_Items_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Task_Items" EntitySet="Task_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Items_Tasks" Association="FutureStarModel.Store.FK_Task_Items_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Task_Items" EntitySet="Task_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_User_Projects" Association="FutureStarModel.Store.FK_Tasks_User_Projects">
+            <End Role="User_Projects" EntitySet="User_Projects" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Projects_Levels" Association="FutureStarModel.Store.FK_User_Projects_Levels">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="User_Projects" EntitySet="User_Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Projects_Projects" Association="FutureStarModel.Store.FK_User_Projects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="User_Projects" EntitySet="User_Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Projects_Users" Association="FutureStarModel.Store.FK_User_Projects_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Projects" EntitySet="User_Projects" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerText" Type="nvarchar" MaxLength="150" />
+          <Property Name="QuestionId" Type="int" />
+        </EntityType>
+        <EntityType Name="Contents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="text" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="ItemType" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Levels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LevelText" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="text" />
+          <Property Name="LevelGroup" Type="nchar" MaxLength="10" />
+          <Property Name="LevelOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="text" />
+          <Property Name="QuestionType" Type="int" />
+          <Property Name="ContentId" Type="int" />
+          <Property Name="CorrectAnswer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tag_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TagText" Type="nvarchar" MaxLength="100" />
+          <Property Name="LevelId" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Task_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="UserAnswer" Type="text" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Description" Type="text" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="CompletedTime" Type="datetime" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="UserProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="User_Projects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LevelId" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="BirthDay" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ParentEmail" Type="varchar" MaxLength="50" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Token" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="FutureStarModel.Store.Questions" Multiplicity="0..1" />
+          <End Role="Answers" Type="FutureStarModel.Store.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Projects">
+          <End Role="Projects" Type="FutureStarModel.Store.Projects" Multiplicity="0..1" />
+          <End Role="Items" Type="FutureStarModel.Store.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Questions">
+          <End Role="Questions" Type="FutureStarModel.Store.Questions" Multiplicity="0..1" />
+          <End Role="Items" Type="FutureStarModel.Store.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Contents">
+          <End Role="Contents" Type="FutureStarModel.Store.Contents" Multiplicity="0..1" />
+          <End Role="Questions" Type="FutureStarModel.Store.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="ContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Items_Items">
+          <End Role="Items" Type="FutureStarModel.Store.Items" Multiplicity="1" />
+          <End Role="Tag_Items" Type="FutureStarModel.Store.Tag_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag_Items">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Items_Tags">
+          <End Role="Tags" Type="FutureStarModel.Store.Tags" Multiplicity="1" />
+          <End Role="Tag_Items" Type="FutureStarModel.Store.Tag_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag_Items">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_Levels">
+          <End Role="Levels" Type="FutureStarModel.Store.Levels" Multiplicity="0..1" />
+          <End Role="Tags" Type="FutureStarModel.Store.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Items_Items">
+          <End Role="Items" Type="FutureStarModel.Store.Items" Multiplicity="1" />
+          <End Role="Task_Items" Type="FutureStarModel.Store.Task_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task_Items">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Items_Tasks">
+          <End Role="Tasks" Type="FutureStarModel.Store.Tasks" Multiplicity="1" />
+          <End Role="Task_Items" Type="FutureStarModel.Store.Task_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task_Items">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_User_Projects">
+          <End Role="User_Projects" Type="FutureStarModel.Store.User_Projects" Multiplicity="0..1" />
+          <End Role="Tasks" Type="FutureStarModel.Store.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="UserProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Projects_Levels">
+          <End Role="Levels" Type="FutureStarModel.Store.Levels" Multiplicity="0..1" />
+          <End Role="User_Projects" Type="FutureStarModel.Store.User_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Projects">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Projects_Projects">
+          <End Role="Projects" Type="FutureStarModel.Store.Projects" Multiplicity="1" />
+          <End Role="User_Projects" Type="FutureStarModel.Store.User_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Projects">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Projects_Users">
+          <End Role="Users" Type="FutureStarModel.Store.Users" Multiplicity="1" />
+          <End Role="User_Projects" Type="FutureStarModel.Store.User_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Projects">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FutureStarModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FutureStarEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="FutureStarModel.Answer" />
+          <EntitySet Name="Contents" EntityType="FutureStarModel.Content" />
+          <EntitySet Name="Items" EntityType="FutureStarModel.Item" />
+          <EntitySet Name="Levels" EntityType="FutureStarModel.Level" />
+          <EntitySet Name="Projects" EntityType="FutureStarModel.Project" />
+          <EntitySet Name="Questions" EntityType="FutureStarModel.Question" />
+          <EntitySet Name="Tag_Items" EntityType="FutureStarModel.Tag_Items" />
+          <EntitySet Name="Tags" EntityType="FutureStarModel.Tag" />
+          <EntitySet Name="Task_Items" EntityType="FutureStarModel.Task_Items" />
+          <EntitySet Name="Tasks" EntityType="FutureStarModel.Task" />
+          <EntitySet Name="User_Projects" EntityType="FutureStarModel.User_Projects" />
+          <EntitySet Name="Users" EntityType="FutureStarModel.User" />
+          <AssociationSet Name="FK_Answers_Questions" Association="FutureStarModel.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Contents" Association="FutureStarModel.FK_Questions_Contents">
+            <End Role="Contents" EntitySet="Contents" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Projects" Association="FutureStarModel.FK_Items_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Questions" Association="FutureStarModel.FK_Items_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Items_Items" Association="FutureStarModel.FK_Tag_Items_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Tag_Items" EntitySet="Tag_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Items_Items" Association="FutureStarModel.FK_Task_Items_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Task_Items" EntitySet="Task_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_Levels" Association="FutureStarModel.FK_Tags_Levels">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Projects_Levels" Association="FutureStarModel.FK_User_Projects_Levels">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="User_Projects" EntitySet="User_Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Projects_Projects" Association="FutureStarModel.FK_User_Projects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="User_Projects" EntitySet="User_Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Items_Tags" Association="FutureStarModel.FK_Tag_Items_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Tag_Items" EntitySet="Tag_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Items_Tasks" Association="FutureStarModel.FK_Task_Items_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Task_Items" EntitySet="Task_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_User_Projects" Association="FutureStarModel.FK_Tasks_User_Projects">
+            <End Role="User_Projects" EntitySet="User_Projects" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Projects_Users" Association="FutureStarModel.FK_User_Projects_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Projects" EntitySet="User_Projects" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerText" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="QuestionId" Type="Int32" />
+          <NavigationProperty Name="Question" Relationship="FutureStarModel.FK_Answers_Questions" FromRole="Answers" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Questions" Relationship="FutureStarModel.FK_Questions_Contents" FromRole="Contents" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="QuestionId" Type="Int32" />
+          <Property Name="ItemType" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="FutureStarModel.FK_Items_Projects" FromRole="Items" ToRole="Projects" />
+          <NavigationProperty Name="Question" Relationship="FutureStarModel.FK_Items_Questions" FromRole="Items" ToRole="Questions" />
+          <NavigationProperty Name="Tag_Items" Relationship="FutureStarModel.FK_Tag_Items_Items" FromRole="Items" ToRole="Tag_Items" />
+          <NavigationProperty Name="Task_Items" Relationship="FutureStarModel.FK_Task_Items_Items" FromRole="Items" ToRole="Task_Items" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelText" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="LevelGroup" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="LevelOrder" Type="Int32" />
+          <NavigationProperty Name="Tags" Relationship="FutureStarModel.FK_Tags_Levels" FromRole="Levels" ToRole="Tags" />
+          <NavigationProperty Name="User_Projects" Relationship="FutureStarModel.FK_User_Projects_Levels" FromRole="Levels" ToRole="User_Projects" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Items" Relationship="FutureStarModel.FK_Items_Projects" FromRole="Projects" ToRole="Items" />
+          <NavigationProperty Name="User_Projects" Relationship="FutureStarModel.FK_User_Projects_Projects" FromRole="Projects" ToRole="User_Projects" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="QuestionType" Type="Int32" />
+          <Property Name="ContentId" Type="Int32" />
+          <Property Name="CorrectAnswer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Answers" Relationship="FutureStarModel.FK_Answers_Questions" FromRole="Questions" ToRole="Answers" />
+          <NavigationProperty Name="Content" Relationship="FutureStarModel.FK_Questions_Contents" FromRole="Questions" ToRole="Contents" />
+          <NavigationProperty Name="Items" Relationship="FutureStarModel.FK_Items_Questions" FromRole="Questions" ToRole="Items" />
+        </EntityType>
+        <EntityType Name="Tag_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="FutureStarModel.FK_Tag_Items_Items" FromRole="Tag_Items" ToRole="Items" />
+          <NavigationProperty Name="Tag" Relationship="FutureStarModel.FK_Tag_Items_Tags" FromRole="Tag_Items" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TagText" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LevelId" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Level" Relationship="FutureStarModel.FK_Tags_Levels" FromRole="Tags" ToRole="Levels" />
+          <NavigationProperty Name="Tag_Items" Relationship="FutureStarModel.FK_Tag_Items_Tags" FromRole="Tags" ToRole="Tag_Items" />
+        </EntityType>
+        <EntityType Name="Task_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="UserAnswer" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Item" Relationship="FutureStarModel.FK_Task_Items_Items" FromRole="Task_Items" ToRole="Items" />
+          <NavigationProperty Name="Task" Relationship="FutureStarModel.FK_Task_Items_Tasks" FromRole="Task_Items" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="CompletedTime" Type="DateTime" Precision="3" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="UserProjectId" Type="Int32" />
+          <NavigationProperty Name="Task_Items" Relationship="FutureStarModel.FK_Task_Items_Tasks" FromRole="Tasks" ToRole="Task_Items" />
+          <NavigationProperty Name="User_Projects" Relationship="FutureStarModel.FK_Tasks_User_Projects" FromRole="Tasks" ToRole="User_Projects" />
+        </EntityType>
+        <EntityType Name="User_Projects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelId" Type="Int32" />
+          <NavigationProperty Name="Level" Relationship="FutureStarModel.FK_User_Projects_Levels" FromRole="User_Projects" ToRole="Levels" />
+          <NavigationProperty Name="Project" Relationship="FutureStarModel.FK_User_Projects_Projects" FromRole="User_Projects" ToRole="Projects" />
+          <NavigationProperty Name="Tasks" Relationship="FutureStarModel.FK_Tasks_User_Projects" FromRole="User_Projects" ToRole="Tasks" />
+          <NavigationProperty Name="User" Relationship="FutureStarModel.FK_User_Projects_Users" FromRole="User_Projects" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="BirthDay" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ParentEmail" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="User_Projects" Relationship="FutureStarModel.FK_User_Projects_Users" FromRole="Users" ToRole="User_Projects" />
+          <Property Type="String" Name="Token" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="FutureStarModel.Question" Multiplicity="0..1" />
+          <End Role="Answers" Type="FutureStarModel.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Contents">
+          <End Role="Contents" Type="FutureStarModel.Content" Multiplicity="0..1" />
+          <End Role="Questions" Type="FutureStarModel.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="ContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Projects">
+          <End Role="Projects" Type="FutureStarModel.Project" Multiplicity="0..1" />
+          <End Role="Items" Type="FutureStarModel.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Questions">
+          <End Role="Questions" Type="FutureStarModel.Question" Multiplicity="0..1" />
+          <End Role="Items" Type="FutureStarModel.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Items_Items">
+          <End Role="Items" Type="FutureStarModel.Item" Multiplicity="1" />
+          <End Role="Tag_Items" Type="FutureStarModel.Tag_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag_Items">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Items_Items">
+          <End Role="Items" Type="FutureStarModel.Item" Multiplicity="1" />
+          <End Role="Task_Items" Type="FutureStarModel.Task_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task_Items">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_Levels">
+          <End Role="Levels" Type="FutureStarModel.Level" Multiplicity="0..1" />
+          <End Role="Tags" Type="FutureStarModel.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Projects_Levels">
+          <End Role="Levels" Type="FutureStarModel.Level" Multiplicity="0..1" />
+          <End Role="User_Projects" Type="FutureStarModel.User_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Projects">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Projects_Projects">
+          <End Role="Projects" Type="FutureStarModel.Project" Multiplicity="1" />
+          <End Role="User_Projects" Type="FutureStarModel.User_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Projects">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Items_Tags">
+          <End Role="Tags" Type="FutureStarModel.Tag" Multiplicity="1" />
+          <End Role="Tag_Items" Type="FutureStarModel.Tag_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag_Items">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Items_Tasks">
+          <End Role="Tasks" Type="FutureStarModel.Task" Multiplicity="1" />
+          <End Role="Task_Items" Type="FutureStarModel.Task_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task_Items">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_User_Projects">
+          <End Role="User_Projects" Type="FutureStarModel.User_Projects" Multiplicity="0..1" />
+          <End Role="Tasks" Type="FutureStarModel.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="UserProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Projects_Users">
+          <End Role="Users" Type="FutureStarModel.User" Multiplicity="1" />
+          <End Role="User_Projects" Type="FutureStarModel.User_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Projects">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FutureStarModelStoreContainer" CdmEntityContainer="FutureStarEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="FutureStarModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="FutureStarModel.Content">
+              <MappingFragment StoreEntitySet="Contents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="FutureStarModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Levels">
+            <EntityTypeMapping TypeName="FutureStarModel.Level">
+              <MappingFragment StoreEntitySet="Levels">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LevelText" ColumnName="LevelText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LevelGroup" ColumnName="LevelGroup" />
+                <ScalarProperty Name="LevelOrder" ColumnName="LevelOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="FutureStarModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="FutureStarModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+                <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+                <ScalarProperty Name="CorrectAnswer" ColumnName="CorrectAnswer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tag_Items">
+            <EntityTypeMapping TypeName="FutureStarModel.Tag_Items">
+              <MappingFragment StoreEntitySet="Tag_Items">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="FutureStarModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TagText" ColumnName="TagText" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task_Items">
+            <EntityTypeMapping TypeName="FutureStarModel.Task_Items">
+              <MappingFragment StoreEntitySet="Task_Items">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="UserAnswer" ColumnName="UserAnswer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="FutureStarModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CompletedTime" ColumnName="CompletedTime" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserProjectId" ColumnName="UserProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Projects">
+            <EntityTypeMapping TypeName="FutureStarModel.User_Projects">
+              <MappingFragment StoreEntitySet="User_Projects">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FutureStarModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="ParentEmail" ColumnName="ParentEmail" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

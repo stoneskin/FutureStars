@@ -1,0 +1,55 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout.cshtml";
+}
+
+<div id="body">
+    <section class="content-wrapper main-content clear-fix">
+        <div>
+            <h2>signalR Tests</h2>
+            
+        </div>
+        <div>
+            
+            <input type="button" value="Test1" id="btnTest1" />
+            <br/>
+             <input type="button" value="Test2" id="btnTest2" />
+            <p id="product" />
+        </div>
+    </section>
+</div>
+<script>
+    $(function() {
+        // Reference the auto-generated proxy for the hub.  
+        var apiProxy = $.connection.apiHub;
+        //// Create a function that the hub can call back to display messages.
+        apiProxy.client.hello = function(response) {
+            // alert(response);
+            console.log(response);
+           // msgbox(response);
+        };
+
+        $.connection.hub.start().done(
+            function() {
+
+                $('#btnTest1').click(function() {
+                    apiProxy.server.hello();
+                    //.done(function(msg) {
+                    //    console.log(msg);
+                    //    //  alert(msg);
+                    //    msgbox(msg);
+                    //});
+
+                });
+
+                $('#btnTest2').click(function () {
+                    apiProxy.server.getData(1);
+                });
+            });
+    })
+    
+</script>
+
+
